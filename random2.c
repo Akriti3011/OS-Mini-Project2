@@ -176,7 +176,8 @@
             insert(at[i],bt[i],process[i]);
         }
         srand(time(NULL));                                //generate random no from cpu time
-
+        int num;
+        num=size;
         printf("Process\t\t Waiting time\tTurn around time\n");
         while(size>0){
 
@@ -209,10 +210,14 @@
                         avg_wt+=wait;
                         avg_tat+=tat;
                         delete(rno);
-                        //display();
+                        size--;
+                        display();
                     }
                     counter++;
-                    ptr=ptr->link;
+                    if(size>1)
+                        ptr=ptr->link;
+                    else
+                        break;
                 }
 
             }
@@ -222,8 +227,8 @@
                 current_time=ptr->at;
             }
         }
-        avg_wt=avg_wt/size;
-        avg_tat=avg_tat/size;
+        avg_wt=avg_wt/num;
+        avg_tat=avg_tat/num;
 
         printf("\n\nAverage Waiting Time=%f",avg_wt);
         printf("\nAverage Turnaround Time=%f\n",avg_tat);
